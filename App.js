@@ -1,6 +1,7 @@
 import { StatusBar } from "expo-status-bar";
 import { ImageBackground, StyleSheet, Text, View } from "react-native";
 import { useFonts } from "expo-font";
+import 'react-native-gesture-handler';
 import Login from "./Screens/LoginScreen";
 import Registration from "./Screens/RegistrationScreen";
 import Posts from "./Screens/PostsScreen";
