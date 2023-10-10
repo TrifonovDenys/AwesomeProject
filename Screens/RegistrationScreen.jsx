@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { KeyboardAwareScrollView } from "react-native-keyboard-aware-scroll-view";
 import {
-  ScrollView,
+  ImageBackground,
   StyleSheet,
   Text,
   View,
@@ -13,7 +13,8 @@ import {
   Image,
 } from "react-native";
 import ButtonSubmit from "../Components/Button";
-import addImg from "../assets/add.png";
+import AddPhoto from "../assets/svg/add.svg";
+import bgimg from "../assets/PhotoBG.png";
 const Registration = () => {
   const [login, setLogin] = useState("");
   const [email, setEmail] = useState("");
@@ -64,73 +65,78 @@ const Registration = () => {
   };
 
   return (
-    <TouchableWithoutFeedback onPress={Keyboard.dismiss}>
-      <View style={styles.container}>
-        <View style={styles.avatarContainer}>
-          <View style={styles.iconContainer}>
-            <Image source={addImg} />
+    <ImageBackground source={bgimg} resizeMode="cover" style={styles.image}>
+      <TouchableWithoutFeedback onPress={Keyboard.dismiss}>
+        <View style={styles.container}>
+          <View style={styles.avatarContainer}>
+            <View style={styles.iconContainer}>
+              <AddPhoto />
+            </View>
+          </View>
+          <Text style={styles.title}>Реєстрація</Text>
+
+          <View style={styles.inputBlock}>
+            <TextInput
+              style={[styles.input, isLoginFocused && styles.inputFocused]}
+              onFocus={handleLoginFocus}
+              onBlur={handleLoginBlur}
+              placeholder="Логін"
+              placeholderTextColor="#BDBDBD"
+              value={login}
+              onChangeText={(text) => setLogin(text)}
+            />
+          </View>
+          {/* <KeyboardAwareScrollView extraHeight={10} keyboardOpeningTime={100}> */}
+          <View style={styles.inputBlock}>
+            <TextInput
+              style={[styles.input, isEmailFocused && styles.inputFocused]}
+              onFocus={handleEmailFocus}
+              onBlur={handleEmailBlur}
+              placeholder="Адреса електронної пошти"
+              placeholderTextColor="#BDBDBD"
+              value={email}
+              onChangeText={(text) => setEmail(text)}
+            />
+          </View>
+          {/* </KeyboardAwareScrollView> */}
+          <View style={[styles.inputBlock, styles.passwordBlock]}>
+            {/* <KeyboardAvoidingView // визначаємо ОС та налаштовуємо поведінку клавіатури
+            behavior={Platform.OS == "ios" ? "padding" : "height"}> */}
+            <TextInput
+              style={[styles.input, isPasswordFocused && styles.inputFocused]}
+              onFocus={handlePasswordFocus}
+              onBlur={handlePasswordBlur}
+              placeholder="Пароль"
+              placeholderTextColor="#BDBDBD"
+              secureTextEntry={!showPassword}
+              value={password}
+              onChangeText={(text) => setPassword(text)}
+            />
+            {/* </KeyboardAvoidingView> */}
+            <Text onPress={handleShowPassword} style={styles.togglePassword}>
+              {showPassword ? "Сховати" : "Показати"}
+            </Text>
+          </View>
+
+          <View style={styles.buttonBlock}>
+            <ButtonSubmit onPress={handleRegistration}>
+              Зареєструватися
+            </ButtonSubmit>
+            <Text style={styles.loginText}>
+              Вже є акаунт?{" "}
+              <Text style={{ textDecorationLine: "underline" }}>Увійти</Text>
+            </Text>
           </View>
         </View>
-        <Text style={styles.title}>Реєстрація</Text>
-
-        <View style={styles.inputBlock}>
-          <TextInput
-            style={[styles.input, isLoginFocused && styles.inputFocused]}
-            onFocus={handleLoginFocus}
-            onBlur={handleLoginBlur}
-            placeholder="Логін"
-            value={login}
-            onChangeText={(text) => setLogin(text)}
-          />
-        </View>
-        {/* <KeyboardAwareScrollView extraHeight={10} keyboardOpeningTime={100}> */}
-        <View style={styles.inputBlock}>
-          <TextInput
-            style={[styles.input, isEmailFocused && styles.inputFocused]}
-            onFocus={handleEmailFocus}
-            onBlur={handleEmailBlur}
-            placeholder="Адреса електронної пошти"
-            value={email}
-            onChangeText={(text) => setEmail(text)}
-          />
-        </View>
-        {/* </KeyboardAwareScrollView> */}
-        <View style={[styles.inputBlock, styles.passwordBlock]}>
-          {/* <KeyboardAvoidingView // визначаємо ОС та налаштовуємо поведінку клавіатури
-            behavior={Platform.OS == "ios" ? "padding" : "height"}> */}
-          <TextInput
-            style={[styles.input, isPasswordFocused && styles.inputFocused]}
-            onFocus={handlePasswordFocus}
-            onBlur={handlePasswordBlur}
-            placeholder="Пароль"
-            secureTextEntry={!showPassword}
-            value={password}
-            onChangeText={(text) => setPassword(text)}
-          />
-          {/* </KeyboardAvoidingView> */}
-          <Text onPress={handleShowPassword} style={styles.togglePassword}>
-            {showPassword ? "Сховати" : "Показати"}
-          </Text>
-        </View>
-
-        <View style={styles.buttonBlock}>
-          <ButtonSubmit onPress={handleRegistration}>
-            Зареєструватися
-          </ButtonSubmit>
-          <Text style={styles.loginText}>
-            Вже є акаунт?{" "}
-            <Text style={{ textDecorationLine: "underline" }}>Увійти</Text>
-          </Text>
-        </View>
-      </View>
-    </TouchableWithoutFeedback>
+      </TouchableWithoutFeedback>
+    </ImageBackground>
   );
 };
 
 const styles = StyleSheet.create({
   container: {
-    // flex: 1,
     position: "relative",
+    fontFamily: "Roboto-Regular",
     borderTopLeftRadius: 25,
     borderTopRightRadius: 25,
     backgroundColor: "#fff",
@@ -139,6 +145,10 @@ const styles = StyleSheet.create({
     alignItems: "center",
     justifyContent: "flex-end",
     paddingBottom: 110,
+  },
+  image: {
+    flex: 1,
+    justifyContent: "flex-end",
   },
   avatarContainer: {
     position: "absolute",
@@ -154,6 +164,7 @@ const styles = StyleSheet.create({
     bottom: 15,
   },
   title: {
+    fontFamily: "Roboto-Medium",
     textAlign: "center",
     paddingBottom: 32,
     paddingTop: 92,
@@ -181,7 +192,7 @@ const styles = StyleSheet.create({
     paddingBottom: 16,
   },
   passwordBlock: {
-    // paddingBottom: 42,
+    paddingBottom: 42,
   },
   togglePassword: {
     position: "absolute",

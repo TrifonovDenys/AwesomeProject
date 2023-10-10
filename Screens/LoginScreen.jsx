@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import {
+  ImageBackground,
   StyleSheet,
   Text,
   View,
@@ -10,7 +11,7 @@ import {
   Platform,
 } from "react-native";
 import ButtonSubmit from "../Components/Button";
-
+import bgimg from "../assets/PhotoBG.png";
 const Login = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
@@ -46,50 +47,54 @@ const Login = () => {
   };
 
   return (
-    <TouchableWithoutFeedback onPress={Keyboard.dismiss}>
-      <View style={styles.container}>
-        <Text style={styles.title}>Увійти</Text>
-        <View style={styles.inputBlock}>
-          <TextInput
-            style={[styles.input, isEmailFocused && styles.inputFocused]}
-            onFocus={handleEmailFocus}
-            onBlur={handleEmailBlur}
-            placeholder="Адреса електронної пошти"
-            value={email}
-            onChangeText={(text) => setEmail(text)}
-          />
-        </View>
-        <View style={[styles.inputBlock, styles.passwordBlock]}>
-          <TextInput
-            style={[styles.input, isPasswordFocused && styles.inputFocused]}
-            onFocus={handlePasswordFocus}
-            onBlur={handlePasswordBlur}
-            placeholder="Пароль"
-            secureTextEntry={!showPassword}
-            value={password}
-            onChangeText={(text) => setPassword(text)}
-          />
-          <Text onPress={handleShowPassword} style={styles.togglePassword}>
-            {showPassword ? "Сховати" : "Показати"}
-          </Text>
-        </View>
-        <View style={styles.buttonBlock}>
-          <ButtonSubmit onPress={handleRegistration}>Увійти</ButtonSubmit>
-          <Text style={styles.singupText}>
-            Немає акаунту?{" "}
-            <Text style={{ textDecorationLine: "underline" }}>
-              Зареєструватися
+    <ImageBackground source={bgimg} resizeMode="cover" style={styles.image}>
+      <TouchableWithoutFeedback onPress={Keyboard.dismiss}>
+        <View style={styles.container}>
+          <Text style={styles.title}>Увійти</Text>
+          <View style={styles.inputBlock}>
+            <TextInput
+              style={[styles.input, isEmailFocused && styles.inputFocused]}
+              onFocus={handleEmailFocus}
+              onBlur={handleEmailBlur}
+              placeholder="Адреса електронної пошти"
+              placeholderTextColor="#BDBDBD"
+              value={email}
+              onChangeText={(text) => setEmail(text)}
+            />
+          </View>
+          <View style={[styles.inputBlock, styles.passwordBlock]}>
+            <TextInput
+              style={[styles.input, isPasswordFocused && styles.inputFocused]}
+              onFocus={handlePasswordFocus}
+              onBlur={handlePasswordBlur}
+              placeholder="Пароль"
+              placeholderTextColor="#BDBDBD"
+              secureTextEntry={!showPassword}
+              value={password}
+              onChangeText={(text) => setPassword(text)}
+            />
+            <Text onPress={handleShowPassword} style={styles.togglePassword}>
+              {showPassword ? "Сховати" : "Показати"}
             </Text>
-          </Text>
+          </View>
+          <View style={styles.buttonBlock}>
+            <ButtonSubmit onPress={handleRegistration}>Увійти</ButtonSubmit>
+            <Text style={styles.singupText}>
+              Немає акаунту?{" "}
+              <Text style={{ textDecorationLine: "underline" }}>
+                Зареєструватися
+              </Text>
+            </Text>
+          </View>
         </View>
-      </View>
-    </TouchableWithoutFeedback>
+      </TouchableWithoutFeedback>
+    </ImageBackground>
   );
 };
 
 const styles = StyleSheet.create({
   container: {
-    // flex: 1,
+    fontFamily: "Roboto-Regular",
     borderTopLeftRadius: 25,
     borderTopRightRadius: 25,
     backgroundColor: "#fff",
@@ -99,7 +104,12 @@ const styles = StyleSheet.create({
     justifyContent: "flex-end",
     paddingBottom: 110,
   },
+  image: {
+    flex: 1,
+    justifyContent: "flex-end",
+  },
   title: {
+    fontFamily: "Roboto-Medium",
     textAlign: "center",
     paddingBottom: 32,
     paddingTop: 32,
