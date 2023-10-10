@@ -18,8 +18,8 @@ import Grid from "../assets/svg/grid.svg";
 import Union from "../assets/svg/addU.svg";
 import User from "../assets/svg/user.svg";
 const Posts = () => {
-  const [grid, setGrid] = useState(false);
-  const [union, setUnion] = useState(true);
+  const [grid, setGrid] = useState(true);
+  const [union, setUnion] = useState(false);
   const [user, setUser] = useState(false);
 
   const handleGridIsActive = () => {
