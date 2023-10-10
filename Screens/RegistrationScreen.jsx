@@ -100,19 +100,19 @@ const Registration = () => {
           </View>
           {/* </KeyboardAwareScrollView> */}
           <View style={[styles.inputBlock, styles.passwordBlock]}>
-            {/* <KeyboardAvoidingView // визначаємо ОС та налаштовуємо поведінку клавіатури
-            behavior={Platform.OS == "ios" ? "padding" : "height"}> */}
-            <TextInput
-              style={[styles.input, isPasswordFocused && styles.inputFocused]}
-              onFocus={handlePasswordFocus}
-              onBlur={handlePasswordBlur}
-              placeholder="Пароль"
-              placeholderTextColor="#BDBDBD"
-              secureTextEntry={!showPassword}
-              value={password}
-              onChangeText={(text) => setPassword(text)}
-            />
-            {/* </KeyboardAvoidingView> */}
+            <KeyboardAvoidingView // визначаємо ОС та налаштовуємо поведінку клавіатури
+              behavior={Platform.OS == "ios" ? "padding" : "height"}>
+              <TextInput
+                style={[styles.input, isPasswordFocused && styles.inputFocused]}
+                onFocus={handlePasswordFocus}
+                onBlur={handlePasswordBlur}
+                placeholder="Пароль"
+                placeholderTextColor="#BDBDBD"
+                secureTextEntry={!showPassword}
+                value={password}
+                onChangeText={(text) => setPassword(text)}
+              />
+            </KeyboardAvoidingView>
             <Text onPress={handleShowPassword} style={styles.togglePassword}>
               {showPassword ? "Сховати" : "Показати"}
             </Text>
