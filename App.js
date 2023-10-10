@@ -2,7 +2,7 @@ import { StatusBar } from "expo-status-bar";
 import { ImageBackground, StyleSheet, Text, View } from "react-native";
 import bgimg from "./assets/PhotoBG.png";
 import Login from "./Screens/LoginScreen";
-// import Registration  from "./Screens/RegistrationScreen";
+import Registration from "./Screens/RegistrationScreen";
 export default function App() {
   return (
     <View style={styles.container}>

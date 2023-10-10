@@ -1,5 +1,12 @@
 import React, { useState } from "react";
-import { StyleSheet, Text, View, TextInput } from "react-native";
+import {
+  StyleSheet,
+  Text,
+  View,
+  TextInput,
+  TouchableWithoutFeedback,
+  Keyboard,
+} from "react-native";
 import ButtonSubmit from "../Components/Button";
 
 const Login = () => {
@@ -11,12 +18,12 @@ const Login = () => {
 
   const handleEmailFocus = () => {
     setIsEmailFocused(true);
-    setIsPasswordFocused(false); // Снимаем фокус с пароля
+    setIsPasswordFocused(false);
   };
 
   const handlePasswordFocus = () => {
     setIsPasswordFocused(true);
-    setIsEmailFocused(false); // Снимаем фокус с email
+    setIsEmailFocused(false);
   };
 
   const handleEmailBlur = () => {
@@ -37,64 +44,68 @@ const Login = () => {
   };
 
   return (
-    <View style={styles.container}>
-      <Text style={styles.title}>Увійти</Text>
-      <TextInput
-        style={[
-          styles.input,
-          isEmailFocused && styles.inputFocused,
-          { marginBottom: 16 },
-        ]}
-        onFocus={handleEmailFocus}
-        onBlur={handleEmailBlur}
-        placeholder="Адреса електронної пошти"
-        value={email}
-        onChangeText={(text) => setEmail(text)}
-      />
-      <View style={styles.passwordBlock}>
-        <TextInput
-          style={[
-            styles.input,
-            isPasswordFocused && styles.inputFocused,
-            { marginBottom: 42 },
-          ]}
-          onFocus={handlePasswordFocus}
-          onBlur={handlePasswordBlur}
-          placeholder="Пароль"
-          secureTextEntry={!showPassword}
-          value={password}
-          onChangeText={(text) => setPassword(text)}
-        />
-        <Text onPress={handleShowPassword} style={styles.togglePassword}>
-          {showPassword ? "Сховати" : "Показати"}
-        </Text>
+    <TouchableWithoutFeedback onPress={Keyboard.dismiss}>
+      <View style={styles.container}>
+        <Text style={styles.title}>Увійти</Text>
+        <View style={styles.inputBlock}>
+          <TextInput
+            style={[styles.input, isEmailFocused && styles.inputFocused]}
+            onFocus={handleEmailFocus}
+            onBlur={handleEmailBlur}
+            placeholder="Адреса електронної пошти"
+            value={email}
+            onChangeText={(text) => setEmail(text)}
+          />
+        </View>
+        <View style={[styles.inputBlock, styles.passwordBlock]}>
+          <TextInput
+            style={[styles.input, isPasswordFocused && styles.inputFocused]}
+            onFocus={handlePasswordFocus}
+            onBlur={handlePasswordBlur}
+            placeholder="Пароль"
+            secureTextEntry={!showPassword}
+            value={password}
+            onChangeText={(text) => setPassword(text)}
+          />
+          <Text onPress={handleShowPassword} style={styles.togglePassword}>
+            {showPassword ? "Сховати" : "Показати"}
+          </Text>
+        </View>
+        <View style={styles.buttonBlock}>
+          <ButtonSubmit onPress={handleRegistration}>Увійти</ButtonSubmit>
+          <Text style={styles.singupText}>
+            Немає акаунту?{" "}
+            <Text style={{ textDecorationLine: "underline" }}>
+              Зареєструватися
+            </Text>
+          </Text>
+        </View>
       </View>
-      <ButtonSubmit onPress={handleRegistration}>Увійти</ButtonSubmit>
-      <Text style={styles.singupText}>
-        Немає акаунту?{" "}
-        <Text style={{ textDecorationLine: "underline" }}>Зареєструватися</Text>
-      </Text>
-    </View>
+    </TouchableWithoutFeedback>
   );
 };
 
 const styles = StyleSheet.create({
   container: {
+    // flex: 1,
     borderTopLeftRadius: 25,
     borderTopRightRadius: 25,
     backgroundColor: "#fff",
     paddingLeft: 16,
     paddingRight: 16,
-    bottom: 0,
+    alignItems: "center",
+    justifyContent: "flex-end",
+    paddingBottom: 110,
   },
   title: {
     textAlign: "center",
     paddingBottom: 32,
     paddingTop: 32,
-    color: 212121,
+    color: "#212121",
     fontSize: 30,
   },
   input: {
+    width: "100%",
     paddingTop: 15,
     paddingLeft: 15,
     paddingBottom: 15,
@@ -103,26 +114,31 @@ const styles = StyleSheet.create({
     borderWidth: 1,
     color: "#212121",
     borderRadius: 10,
-    marginBottom: 16,
   },
   inputFocused: {
     borderColor: "#FF6C00",
     backgroundColor: "#fff",
   },
-
-  passwordBlock: {
+  inputBlock: {
+    width: "100%",
     position: "relative",
+    marginBottom: 16,
+  },
+  passwordBlock: {
+    marginBottom: 42,
   },
   togglePassword: {
     position: "absolute",
     right: 15,
-    top: "50%",
-    transform: [{ translateY: -33 }],
+    top: 25,
+    transform: [{ translateY: -7.5 }],
     color: "#1B4371",
+  },
+  buttonBlock: {
+    width: "100%",
   },
   singupText: {
     textAlign: "center",
-    paddingBottom: 111,
     color: "#1B4371",
   },
 });
