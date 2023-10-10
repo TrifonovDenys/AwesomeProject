@@ -1,14 +1,19 @@
 import React, { useState } from "react";
+import { KeyboardAwareScrollView } from "react-native-keyboard-aware-scroll-view";
 import {
+  ScrollView,
   StyleSheet,
   Text,
   View,
   TextInput,
   TouchableWithoutFeedback,
   Keyboard,
+  KeyboardAvoidingView,
+  Platform,
+  Image,
 } from "react-native";
 import ButtonSubmit from "../Components/Button";
-
+import addImg from "../assets/add.png";
 const Registration = () => {
   const [login, setLogin] = useState("");
   const [email, setEmail] = useState("");
@@ -61,7 +66,13 @@ const Registration = () => {
   return (
     <TouchableWithoutFeedback onPress={Keyboard.dismiss}>
       <View style={styles.container}>
+        <View style={styles.avatarContainer}>
+          <View style={styles.iconContainer}>
+            <Image source={addImg} />
+          </View>
+        </View>
         <Text style={styles.title}>Реєстрація</Text>
+
         <View style={styles.inputBlock}>
           <TextInput
             style={[styles.input, isLoginFocused && styles.inputFocused]}
@@ -72,6 +83,7 @@ const Registration = () => {
             onChangeText={(text) => setLogin(text)}
           />
         </View>
+        {/* <KeyboardAwareScrollView extraHeight={10} keyboardOpeningTime={100}> */}
         <View style={styles.inputBlock}>
           <TextInput
             style={[styles.input, isEmailFocused && styles.inputFocused]}
@@ -82,7 +94,10 @@ const Registration = () => {
             onChangeText={(text) => setEmail(text)}
           />
         </View>
+        {/* </KeyboardAwareScrollView> */}
         <View style={[styles.inputBlock, styles.passwordBlock]}>
+          {/* <KeyboardAvoidingView // визначаємо ОС та налаштовуємо поведінку клавіатури
+            behavior={Platform.OS == "ios" ? "padding" : "height"}> */}
           <TextInput
             style={[styles.input, isPasswordFocused && styles.inputFocused]}
             onFocus={handlePasswordFocus}
@@ -92,6 +107,7 @@ const Registration = () => {
             value={password}
             onChangeText={(text) => setPassword(text)}
           />
+          {/* </KeyboardAvoidingView> */}
           <Text onPress={handleShowPassword} style={styles.togglePassword}>
             {showPassword ? "Сховати" : "Показати"}
           </Text>
@@ -114,6 +130,7 @@ const Registration = () => {
 const styles = StyleSheet.create({
   container: {
     // flex: 1,
+    position: "relative",
     borderTopLeftRadius: 25,
     borderTopRightRadius: 25,
     backgroundColor: "#fff",
@@ -123,10 +140,23 @@ const styles = StyleSheet.create({
     justifyContent: "flex-end",
     paddingBottom: 110,
   },
+  avatarContainer: {
+    position: "absolute",
+    top: -60,
+    width: 120,
+    height: 120,
+    backgroundColor: "#F6F6F6",
+    borderRadius: 16,
+  },
+  iconContainer: {
+    position: "absolute",
+    right: -12.5,
+    bottom: 15,
+  },
   title: {
     textAlign: "center",
     paddingBottom: 32,
-    paddingTop: 32,
+    paddingTop: 92,
     color: "#212121",
     fontSize: 30,
   },
@@ -148,10 +178,10 @@ const styles = StyleSheet.create({
   inputBlock: {
     width: "100%",
     position: "relative",
-    marginBottom: 16,
+    paddingBottom: 16,
   },
   passwordBlock: {
-    marginBottom: 42,
+    // paddingBottom: 42,
   },
   togglePassword: {
     position: "absolute",

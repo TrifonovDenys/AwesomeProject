@@ -6,6 +6,8 @@ import {
   TextInput,
   TouchableWithoutFeedback,
   Keyboard,
+  KeyboardAvoidingView,
+  Platform,
 } from "react-native";
 import ButtonSubmit from "../Components/Button";
 
