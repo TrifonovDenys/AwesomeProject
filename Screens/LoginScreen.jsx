@@ -40,6 +40,8 @@ const Login = () => {
   const handleRegistration = () => {
     console.log("Email:", email);
     console.log("Password:", password);
+    setEmail("");
+    setPassword("");
   };
 
   const handleShowPassword = () => {

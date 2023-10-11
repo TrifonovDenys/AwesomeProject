@@ -58,6 +58,9 @@ const Registration = () => {
     console.log("Login:", login);
     console.log("Email:", email);
     console.log("Password:", password);
+    setLogin("");
+    setEmail("");
+    setPassword("");
   };
 
   const handleShowPassword = () => {
