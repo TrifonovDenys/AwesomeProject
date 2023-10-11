@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import { useNavigation } from "@react-navigation/native";
 import {
   ImageBackground,
   StyleSheet,
@@ -13,6 +14,8 @@ import {
 import ButtonSubmit from "../Components/Button";
 import bgimg from "../assets/PhotoBG.png";
 const Login = () => {
+  const navigation = useNavigation();
+
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [isEmailFocused, setIsEmailFocused] = useState(false);
@@ -42,6 +45,7 @@ const Login = () => {
     console.log("Password:", password);
     setEmail("");
     setPassword("");
+    navigation.navigate("Home");
   };
 
   const handleShowPassword = () => {
@@ -83,7 +87,9 @@ const Login = () => {
             <ButtonSubmit onPress={handleRegistration}>Увійти</ButtonSubmit>
             <Text style={styles.singupText}>
               Немає акаунту?{" "}
-              <Text style={{ textDecorationLine: "underline" }}>
+              <Text
+                style={{ textDecorationLine: "underline" }}
+                onPress={() => navigation.navigate("Registration")}>
                 Зареєструватися
               </Text>
             </Text>

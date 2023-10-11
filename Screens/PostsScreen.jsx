@@ -13,7 +13,7 @@ import {
 } from "react-native";
 
 import userImage from "../assets/User.png";
-import LogOut from "../assets/svg/log-out.svg";
+
 import Grid from "../assets/svg/grid.svg";
 import Union from "../assets/svg/addU.svg";
 import User from "../assets/svg/user.svg";
@@ -42,10 +42,6 @@ const Posts = () => {
 
   return (
     <View style={styles.container}>
-      <View style={styles.head}>
-        <Text style={styles.headText}>Публікації</Text>
-        <LogOut style={styles.headIcon} />
-      </View>
       <View style={styles.body}>
         <View style={styles.user}>
           <View style={styles.userImg}>
@@ -81,26 +77,9 @@ const Posts = () => {
 };
 
 const styles = StyleSheet.create({
-  container: { flex: 1 },
-  head: {
-    alignItems: "center",
-    justifyContent: "center",
-    paddingTop: 55,
-    paddingBottom: 10,
+  container: {
+    flex: 1,
     backgroundColor: "#fff",
-    borderBottomColor: "#E5E5E5",
-    borderBottomWidth: 1,
-    position: "relative",
-  },
-  headText: {
-    fontFamily: "Roboto-Medium",
-    color: "#212121",
-    fontSize: 17,
-  },
-  headIcon: {
-    position: "absolute",
-    right: 16,
-    bottom: 10,
   },
   body: {
     paddingVertical: 32,

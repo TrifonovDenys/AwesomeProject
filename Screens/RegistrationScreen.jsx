@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import { useNavigation } from "@react-navigation/native";
 import { KeyboardAwareScrollView } from "react-native-keyboard-aware-scroll-view";
 import {
   ImageBackground,
@@ -16,6 +17,8 @@ import ButtonSubmit from "../Components/Button";
 import AddPhoto from "../assets/svg/add.svg";
 import bgimg from "../assets/PhotoBG.png";
 const Registration = () => {
+  const navigation = useNavigation();
+
   const [login, setLogin] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
@@ -61,6 +64,7 @@ const Registration = () => {
     setLogin("");
     setEmail("");
     setPassword("");
+    navigation.navigate("Home");
   };
 
   const handleShowPassword = () => {
@@ -127,7 +131,11 @@ const Registration = () => {
             </ButtonSubmit>
             <Text style={styles.loginText}>
               Вже є акаунт?{" "}
-              <Text style={{ textDecorationLine: "underline" }}>Увійти</Text>
+              <Text
+                style={{ textDecorationLine: "underline" }}
+                onPress={() => navigation.navigate("Login")}>
+                Увійти
+              </Text>
             </Text>
           </View>
         </View>
