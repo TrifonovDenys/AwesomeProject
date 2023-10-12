@@ -16,7 +16,8 @@ import {
 import ButtonSubmit from "../Components/Button";
 import AddPhoto from "../assets/svg/add.svg";
 import bgimg from "../assets/PhotoBG.png";
-const Registration = () => {
+
+const RegistrationScreen = () => {
   const navigation = useNavigation();
 
   const [login, setLogin] = useState("");
@@ -221,4 +222,4 @@ const styles = StyleSheet.create({
   },
 });
 
-export default Registration;
+export default RegistrationScreen;

@@ -13,7 +13,7 @@ import {
 } from "react-native";
 import ButtonSubmit from "../Components/Button";
 import bgimg from "../assets/PhotoBG.png";
-const Login = () => {
+const LoginScreen = () => {
   const navigation = useNavigation();
 
   const [email, setEmail] = useState("");
@@ -89,7 +89,7 @@ const Login = () => {
               Немає акаунту?{" "}
               <Text
                 style={{ textDecorationLine: "underline" }}
-                onPress={() => navigation.navigate("Registration")}>
+                onPress={() => navigation.navigate("Register")}>
                 Зареєструватися
               </Text>
             </Text>
@@ -163,4 +163,4 @@ const styles = StyleSheet.create({
   },
 });
 
-export default Login;
+export default LoginScreen;

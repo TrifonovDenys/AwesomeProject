@@ -11,34 +11,35 @@ import {
   Image,
   TouchableOpacity,
 } from "react-native";
-
+// import BottomTabs from "../Components/TabsNavigation";
 import userImage from "../assets/User.png";
 
-import Grid from "../assets/svg/grid.svg";
-import Union from "../assets/svg/addU.svg";
-import User from "../assets/svg/user.svg";
-const Posts = () => {
-  const [grid, setGrid] = useState(true);
-  const [union, setUnion] = useState(false);
-  const [user, setUser] = useState(false);
+// import Grid from "../assets/svg/grid.svg";
+// import Union from "../assets/svg/addU.svg";
+// import User from "../assets/svg/user.svg";
 
-  const handleGridIsActive = () => {
-    setGrid(true);
-    setUnion(false);
-    setUser(false);
-  };
+const PostsScreen = () => {
+  // const [grid, setGrid] = useState(true);
+  // const [union, setUnion] = useState(false);
+  // const [user, setUser] = useState(false);
 
-  const handleUnionIsActive = () => {
-    setGrid(false);
-    setUnion(true);
-    setUser(false);
-  };
+  // const handleGridIsActive = () => {
+  //   setGrid(true);
+  //   setUnion(false);
+  //   setUser(false);
+  // };
 
-  const handleUserIsActive = () => {
-    setGrid(false);
-    setUnion(false);
-    setUser(true);
-  };
+  // const handleUnionIsActive = () => {
+  //   setGrid(false);
+  //   setUnion(true);
+  //   setUser(false);
+  // };
+
+  // const handleUserIsActive = () => {
+  //   setGrid(false);
+  //   setUnion(false);
+  //   setUser(true);
+  // };
 
   return (
     <View style={styles.container}>
@@ -54,23 +55,22 @@ const Posts = () => {
         </View>
       </View>
       <View style={styles.footer}>
-        <TouchableOpacity
+        {/* <BottomTabs /> */}
+        {/* <TouchableOpacity
           style={grid && styles.active}
           onPress={handleGridIsActive}>
           <Grid style={grid ? { color: "#fff" } : { color: "#212121" }} />
         </TouchableOpacity>
-
         <TouchableOpacity
           style={union && styles.active}
           onPress={handleUnionIsActive}>
           <Union style={union ? { color: "#fff" } : { color: "#212121" }} />
         </TouchableOpacity>
-
         <TouchableOpacity
           style={user && styles.active}
           onPress={handleUserIsActive}>
           <User style={user ? { color: "#fff" } : { color: "#212121" }} />
-        </TouchableOpacity>
+        </TouchableOpacity> */}
       </View>
     </View>
   );
@@ -130,4 +130,4 @@ const styles = StyleSheet.create({
   },
 });
 
-export default Posts;
+export default PostsScreen;
