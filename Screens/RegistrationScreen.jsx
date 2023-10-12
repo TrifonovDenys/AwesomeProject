@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import { useNavigation } from "@react-navigation/native";
 import { KeyboardAwareScrollView } from "react-native-keyboard-aware-scroll-view";
 import {
+  SafeAreaView,
   ImageBackground,
   StyleSheet,
   Text,
@@ -75,7 +76,7 @@ const RegistrationScreen = () => {
   return (
     <ImageBackground source={bgimg} resizeMode="cover" style={styles.image}>
       <TouchableWithoutFeedback onPress={Keyboard.dismiss}>
-        <View style={styles.container}>
+        <SafeAreaView style={styles.container}>
           <View style={styles.avatarContainer}>
             <View style={styles.iconContainer}>
               <AddPhoto />
@@ -94,7 +95,7 @@ const RegistrationScreen = () => {
               onChangeText={(text) => setLogin(text)}
             />
           </View>
-          {/* <KeyboardAwareScrollView extraHeight={10} keyboardOpeningTime={100}> */}
+
           <View style={styles.inputBlock}>
             <TextInput
               style={[styles.input, isEmailFocused && styles.inputFocused]}
@@ -106,21 +107,19 @@ const RegistrationScreen = () => {
               onChangeText={(text) => setEmail(text)}
             />
           </View>
-          {/* </KeyboardAwareScrollView> */}
+
           <View style={[styles.inputBlock, styles.passwordBlock]}>
-            <KeyboardAvoidingView // визначаємо ОС та налаштовуємо поведінку клавіатури
-              behavior={Platform.OS == "ios" ? "padding" : "height"}>
-              <TextInput
-                style={[styles.input, isPasswordFocused && styles.inputFocused]}
-                onFocus={handlePasswordFocus}
-                onBlur={handlePasswordBlur}
-                placeholder="Пароль"
-                placeholderTextColor="#BDBDBD"
-                secureTextEntry={!showPassword}
-                value={password}
-                onChangeText={(text) => setPassword(text)}
-              />
-            </KeyboardAvoidingView>
+            <TextInput
+              style={[styles.input, isPasswordFocused && styles.inputFocused]}
+              onFocus={handlePasswordFocus}
+              onBlur={handlePasswordBlur}
+              placeholder="Пароль"
+              placeholderTextColor="#BDBDBD"
+              secureTextEntry={!showPassword}
+              value={password}
+              onChangeText={(text) => setPassword(text)}
+            />
+
             <Text onPress={handleShowPassword} style={styles.togglePassword}>
               {showPassword ? "Сховати" : "Показати"}
             </Text>
@@ -139,13 +138,18 @@ const RegistrationScreen = () => {
               </Text>
             </Text>
           </View>
-        </View>
+        </SafeAreaView>
       </TouchableWithoutFeedback>
     </ImageBackground>
   );
 };
 
 const styles = StyleSheet.create({
+  form: {
+    // width: "100%",
+    flex: 1,
+    justifyContent: "flex-end",
+  },
   container: {
     position: "relative",
     fontFamily: "Roboto-Regular",

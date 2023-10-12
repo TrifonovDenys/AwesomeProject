@@ -19,28 +19,6 @@ import userImage from "../assets/User.png";
 // import User from "../assets/svg/user.svg";
 
 const PostsScreen = () => {
-  // const [grid, setGrid] = useState(true);
-  // const [union, setUnion] = useState(false);
-  // const [user, setUser] = useState(false);
-
-  // const handleGridIsActive = () => {
-  //   setGrid(true);
-  //   setUnion(false);
-  //   setUser(false);
-  // };
-
-  // const handleUnionIsActive = () => {
-  //   setGrid(false);
-  //   setUnion(true);
-  //   setUser(false);
-  // };
-
-  // const handleUserIsActive = () => {
-  //   setGrid(false);
-  //   setUnion(false);
-  //   setUser(true);
-  // };
-
   return (
     <View style={styles.container}>
       <View style={styles.body}>
@@ -54,9 +32,9 @@ const PostsScreen = () => {
           </View>
         </View>
       </View>
-      <View style={styles.footer}>
-        {/* <BottomTabs /> */}
-        {/* <TouchableOpacity
+      {/* <View style={styles.footer}>
+         <BottomTabs /> 
+         <TouchableOpacity
           style={grid && styles.active}
           onPress={handleGridIsActive}>
           <Grid style={grid ? { color: "#fff" } : { color: "#212121" }} />
@@ -70,8 +48,8 @@ const PostsScreen = () => {
           style={user && styles.active}
           onPress={handleUserIsActive}>
           <User style={user ? { color: "#fff" } : { color: "#212121" }} />
-        </TouchableOpacity> */}
-      </View>
+        </TouchableOpacity> 
+      </View> */}
     </View>
   );
 };
@@ -105,29 +83,29 @@ const styles = StyleSheet.create({
     opacity: 0.8,
     fontSize: 11,
   },
-  footer: {
-    borderTopColor: "#E5E5E5",
-    borderTopWidth: 1,
-    paddingTop: 10,
-    paddingBottom: 20,
-    position: "absolute",
-    bottom: 0,
-    width: "100%",
-    display: "flex",
-    alignItems: "flex-end",
-    flexDirection: "row",
-    justifyContent: "center",
-    columnGap: 30,
-  },
-  active: {
-    width: 70,
-    backgroundColor: "#FF6C00",
-    color: "#fff",
-    display: "flex",
-    justifyContent: "center",
-    alignItems: "center",
-    borderRadius: 20,
-  },
+  // footer: {
+  //   borderTopColor: "#E5E5E5",
+  //   borderTopWidth: 1,
+  //   paddingTop: 10,
+  //   paddingBottom: 20,
+  //   position: "absolute",
+  //   bottom: 0,
+  //   width: "100%",
+  //   display: "flex",
+  //   alignItems: "flex-end",
+  //   flexDirection: "row",
+  //   justifyContent: "center",
+  //   columnGap: 30,
+  // },
+  // active: {
+  //   width: 70,
+  //   backgroundColor: "#FF6C00",
+  //   color: "#fff",
+  //   display: "flex",
+  //   justifyContent: "center",
+  //   alignItems: "center",
+  //   borderRadius: 20,
+  // },
 });
 
 export default PostsScreen;
