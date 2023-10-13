@@ -55,46 +55,52 @@ const LoginScreen = () => {
   return (
     <ImageBackground source={bgimg} resizeMode="cover" style={styles.image}>
       <TouchableWithoutFeedback onPress={Keyboard.dismiss}>
-        <View style={styles.container}>
-          <Text style={styles.title}>Увійти</Text>
-          <View style={styles.inputBlock}>
-            <TextInput
-              style={[styles.input, isEmailFocused && styles.inputFocused]}
-              onFocus={handleEmailFocus}
-              onBlur={handleEmailBlur}
-              placeholder="Адреса електронної пошти"
-              placeholderTextColor="#BDBDBD"
-              value={email}
-              onChangeText={(text) => setEmail(text)}
-            />
-          </View>
-          <View style={[styles.inputBlock, styles.passwordBlock]}>
-            <TextInput
-              style={[styles.input, isPasswordFocused && styles.inputFocused]}
-              onFocus={handlePasswordFocus}
-              onBlur={handlePasswordBlur}
-              placeholder="Пароль"
-              placeholderTextColor="#BDBDBD"
-              secureTextEntry={!showPassword}
-              value={password}
-              onChangeText={(text) => setPassword(text)}
-            />
-            <Text onPress={handleShowPassword} style={styles.togglePassword}>
-              {showPassword ? "Сховати" : "Показати"}
-            </Text>
-          </View>
-          <View style={styles.buttonBlock}>
-            <ButtonSubmit onPress={handleRegistration}>Увійти</ButtonSubmit>
-            <Text style={styles.singupText}>
-              Немає акаунту?{" "}
-              <Text
-                style={{ textDecorationLine: "underline" }}
-                onPress={() => navigation.navigate("Register")}>
-                Зареєструватися
+        <KeyboardAvoidingView
+          style={styles.container}
+          behavior={Platform.OS === "ios" ? "padding" : "height"}
+          // keyboardVerticalOffset={-150}
+        >
+          <View style={styles.container}>
+            <Text style={styles.title}>Увійти</Text>
+            <View style={styles.inputBlock}>
+              <TextInput
+                style={[styles.input, isEmailFocused && styles.inputFocused]}
+                onFocus={handleEmailFocus}
+                onBlur={handleEmailBlur}
+                placeholder="Адреса електронної пошти"
+                placeholderTextColor="#BDBDBD"
+                value={email}
+                onChangeText={(text) => setEmail(text)}
+              />
+            </View>
+            <View style={[styles.inputBlock, styles.passwordBlock]}>
+              <TextInput
+                style={[styles.input, isPasswordFocused && styles.inputFocused]}
+                onFocus={handlePasswordFocus}
+                onBlur={handlePasswordBlur}
+                placeholder="Пароль"
+                placeholderTextColor="#BDBDBD"
+                secureTextEntry={!showPassword}
+                value={password}
+                onChangeText={(text) => setPassword(text)}
+              />
+              <Text onPress={handleShowPassword} style={styles.togglePassword}>
+                {showPassword ? "Сховати" : "Показати"}
               </Text>
-            </Text>
+            </View>
+            <View style={styles.buttonBlock}>
+              <ButtonSubmit onPress={handleRegistration}>Увійти</ButtonSubmit>
+              <Text style={styles.singupText}>
+                Немає акаунту?{" "}
+                <Text
+                  style={{ textDecorationLine: "underline" }}
+                  onPress={() => navigation.navigate("Register")}>
+                  Зареєструватися
+                </Text>
+              </Text>
+            </View>
           </View>
-        </View>
+        </KeyboardAvoidingView>
       </TouchableWithoutFeedback>
     </ImageBackground>
   );

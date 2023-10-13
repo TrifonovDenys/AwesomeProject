@@ -18,11 +18,11 @@ export default function App() {
     return null;
   }
   return (
-    // <NavigationContainer>
-    //   <MainNav />
-    <New />
-    //   {/* <StatusBar style="auto" />
-    // </NavigationContainer> */}
+    <NavigationContainer>
+      <MainNav />
+      {/* <StatusBar style="auto" /> */}
+    </NavigationContainer>
+    // <New />
   );
 }
 
