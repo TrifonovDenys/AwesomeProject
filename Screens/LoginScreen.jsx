@@ -10,6 +10,7 @@ import {
   Keyboard,
   KeyboardAvoidingView,
   Platform,
+  SafeAreaView,
 } from "react-native";
 import ButtonSubmit from "../Components/Button";
 import bgimg from "../assets/PhotoBG.png";
@@ -58,10 +59,14 @@ const LoginScreen = () => {
         <KeyboardAvoidingView
           style={styles.container}
           behavior={Platform.OS === "ios" ? "padding" : "height"}
-          // keyboardVerticalOffset={-150}
+          keyboardVerticalOffset={Platform.OS === "ios" ? 0 : -5}
         >
-          <View style={styles.container}>
+          <SafeAreaView
+            style={styles.scrollView}
+            automaticallyAdjustContentInsets={false}>
+
             <Text style={styles.title}>Увійти</Text>
+
             <View style={styles.inputBlock}>
               <TextInput
                 style={[styles.input, isEmailFocused && styles.inputFocused]}
@@ -73,7 +78,8 @@ const LoginScreen = () => {
                 onChangeText={(text) => setEmail(text)}
               />
             </View>
-            <View style={[styles.inputBlock, styles.passwordBlock]}>
+
+            <View style={styles.inputBlock}>
               <TextInput
                 style={[styles.input, isPasswordFocused && styles.inputFocused]}
                 onFocus={handlePasswordFocus}
@@ -88,47 +94,54 @@ const LoginScreen = () => {
                 {showPassword ? "Сховати" : "Показати"}
               </Text>
             </View>
-            <View style={styles.buttonBlock}>
-              <ButtonSubmit onPress={handleRegistration}>Увійти</ButtonSubmit>
-              <Text style={styles.singupText}>
-                Немає акаунту?{" "}
-                <Text
-                  style={{ textDecorationLine: "underline" }}
-                  onPress={() => navigation.navigate("Register")}>
-                  Зареєструватися
-                </Text>
-              </Text>
-            </View>
-          </View>
+          </SafeAreaView>
         </KeyboardAvoidingView>
       </TouchableWithoutFeedback>
+      <View style={styles.buttonBlock}>
+        <ButtonSubmit onPress={handleRegistration}>
+          Зареєструватися
+        </ButtonSubmit>
+        <Text style={styles.loginText}>
+          Вже є акаунт?{" "}
+          <Text
+            style={{ textDecorationLine: "underline" }}
+            onPress={() => navigation.navigate("Register")}>
+            Увійти
+          </Text>
+        </Text>
+      </View>
     </ImageBackground>
   );
 };
 
 const styles = StyleSheet.create({
   container: {
-    fontFamily: "Roboto-Regular",
-    borderTopLeftRadius: 25,
-    borderTopRightRadius: 25,
-    backgroundColor: "#fff",
-    paddingLeft: 16,
-    paddingRight: 16,
-    alignItems: "center",
-    justifyContent: "flex-end",
-    paddingBottom: 110,
-  },
-  image: {
     flex: 1,
+    position: "relative",
+    fontFamily: "Roboto-Regular",
     justifyContent: "flex-end",
   },
+  
   title: {
     fontFamily: "Roboto-Medium",
     textAlign: "center",
-    paddingBottom: 32,
-    paddingTop: 32,
+    marginBottom: 32,
     color: "#212121",
     fontSize: 30,
+  },
+  image: {
+    flex: 1,
+  },
+  scrollView: {
+    position: "relative",
+    backgroundColor: "#fff",
+    paddingHorizontal: 16,
+    borderTopLeftRadius: 25,
+    borderTopRightRadius: 25,
+    justifyContent: "flex-end",
+    paddingTop: 32,
+    paddingBottom: 42,
+    gap: 16,
   },
   input: {
     width: "100%",
@@ -148,10 +161,6 @@ const styles = StyleSheet.create({
   inputBlock: {
     width: "100%",
     position: "relative",
-    marginBottom: 16,
-  },
-  passwordBlock: {
-    marginBottom: 42,
   },
   togglePassword: {
     position: "absolute",
@@ -161,12 +170,15 @@ const styles = StyleSheet.create({
     color: "#1B4371",
   },
   buttonBlock: {
+    paddingLeft: 16,
+    paddingRight: 16,
+    backgroundColor: "#fff",
+    paddingBottom: 111,
     width: "100%",
   },
-  singupText: {
+  loginText: {
     textAlign: "center",
     color: "#1B4371",
   },
 });
-
 export default LoginScreen;

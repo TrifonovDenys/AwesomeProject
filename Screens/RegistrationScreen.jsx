@@ -6,7 +6,6 @@ import {
   Platform,
   StyleSheet,
   ImageBackground,
-  ScrollView,
   Text,
   SafeAreaView,
   TouchableWithoutFeedback,
@@ -17,7 +16,7 @@ import bgimg from "../assets/PhotoBG.png";
 import AddPhoto from "../assets/svg/add.svg";
 import ButtonSubmit from "../Components/Button";
 
-const New = () => {
+const RegistrationScreen = () => {
   const navigation = useNavigation();
 
   const [login, setLogin] = useState("");
@@ -77,7 +76,7 @@ const New = () => {
         <KeyboardAvoidingView
           style={styles.container}
           behavior={Platform.OS === "ios" ? "padding" : "height"}
-          // keyboardVerticalOffset={-150}
+          keyboardVerticalOffset={-82}
         >
           <SafeAreaView
             style={styles.scrollView}
@@ -133,14 +132,14 @@ const New = () => {
       </TouchableWithoutFeedback>
       <View style={styles.buttonBlock}>
         <ButtonSubmit onPress={handleRegistration}>
-          Зареєструватися
+        Увійти
         </ButtonSubmit>
         <Text style={styles.loginText}>
-          Вже є акаунт?{" "}
+        Немає акаунту?{" "} 
           <Text
             style={{ textDecorationLine: "underline" }}
             onPress={() => navigation.navigate("Login")}>
-            Увійти
+            Зареєструватися
           </Text>
         </Text>
       </View>
@@ -153,8 +152,7 @@ const styles = StyleSheet.create({
     flex: 1,
     position: "relative",
     fontFamily: "Roboto-Regular",
-    borderTopLeftRadius: 25,
-    borderTopRightRadius: 25,
+
     justifyContent: "flex-end",
   },
   avatarContainer: {
@@ -186,8 +184,9 @@ const styles = StyleSheet.create({
   scrollView: {
     position: "relative",
     backgroundColor: "#fff",
-    paddingLeft: 16,
-    paddingRight: 16,
+    paddingHorizontal: 16,
+    borderTopLeftRadius: 25,
+    borderTopRightRadius: 25,
     justifyContent: "flex-end",
     paddingBottom: 42,
     gap: 16,
@@ -222,7 +221,7 @@ const styles = StyleSheet.create({
     paddingLeft: 16,
     paddingRight: 16,
     backgroundColor: "#fff",
-    paddingBottom: 135,
+    paddingBottom: 78,
     width: "100%",
   },
   loginText: {
@@ -230,4 +229,4 @@ const styles = StyleSheet.create({
     color: "#1B4371",
   },
 });
-export default New;
+export default RegistrationScreen;

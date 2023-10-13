@@ -1,9 +1,8 @@
 import "react-native-gesture-handler";
 import { StatusBar } from "expo-status-bar";
-import { ImageBackground, StyleSheet, Text, View, Button } from "react-native";
+import { StyleSheet } from "react-native";
 import { useFonts } from "expo-font";
 import { NavigationContainer } from "@react-navigation/native";
-import New from "./Screens/New";
 import MainNav from "./Navigation/MainNav";
 
 import Arrow from "./assets/svg/arrow-left.svg"; // icon back
@@ -20,9 +19,9 @@ export default function App() {
   return (
     <NavigationContainer>
       <MainNav />
-      {/* <StatusBar style="auto" /> */}
+      <StatusBar style="auto" />
     </NavigationContainer>
-    // <New />
+
   );
 }
 
