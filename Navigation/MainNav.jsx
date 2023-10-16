@@ -12,7 +12,7 @@ const MainStack = createStackNavigator();
 
 const MainNav = () => {
   return (
-    <MainStack.Navigator initialRouteName="Register">
+    <MainStack.Navigator initialRouteName="Home">
       <MainStack.Screen
         name="Register"
         component={RegistrationScreen}
@@ -33,6 +33,7 @@ const MainNav = () => {
         name="Home"
         component={BottomTabs}
         options={{
+          headerShown: false,
           headerBackImage: () => {},
           title: "Публікації",
           headerTitleAlign: "center",

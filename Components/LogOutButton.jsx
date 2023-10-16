@@ -19,6 +19,11 @@ const LogOutButton = () => {
 };
 
 const styles = StyleSheet.create({
+  head: {
+    position: "absolute",
+    right: 0,
+    bottom: 10,
+  },
   headIcon: {
     marginRight: 16,
   },
