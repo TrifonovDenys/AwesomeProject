@@ -1,22 +1,13 @@
-import React, { useState } from "react";
+import React from "react";
 import {
   StyleSheet,
   Text,
   View,
-  TextInput,
-  TouchableWithoutFeedback,
-  Keyboard,
-  KeyboardAvoidingView,
-  Platform,
   Image,
-  TouchableOpacity,
 } from "react-native";
-// import BottomTabs from "../Components/TabsNavigation";
+
 import userImage from "../assets/User.png";
 
-// import Grid from "../assets/svg/grid.svg";
-// import Union from "../assets/svg/addU.svg";
-// import User from "../assets/svg/user.svg";
 
 const PostsScreen = () => {
   return (
@@ -32,24 +23,6 @@ const PostsScreen = () => {
           </View>
         </View>
       </View>
-      {/* <View style={styles.footer}>
-         <BottomTabs /> 
-         <TouchableOpacity
-          style={grid && styles.active}
-          onPress={handleGridIsActive}>
-          <Grid style={grid ? { color: "#fff" } : { color: "#212121" }} />
-        </TouchableOpacity>
-        <TouchableOpacity
-          style={union && styles.active}
-          onPress={handleUnionIsActive}>
-          <Union style={union ? { color: "#fff" } : { color: "#212121" }} />
-        </TouchableOpacity>
-        <TouchableOpacity
-          style={user && styles.active}
-          onPress={handleUserIsActive}>
-          <User style={user ? { color: "#fff" } : { color: "#212121" }} />
-        </TouchableOpacity> 
-      </View> */}
     </View>
   );
 };
@@ -83,29 +56,6 @@ const styles = StyleSheet.create({
     opacity: 0.8,
     fontSize: 11,
   },
-  // footer: {
-  //   borderTopColor: "#E5E5E5",
-  //   borderTopWidth: 1,
-  //   paddingTop: 10,
-  //   paddingBottom: 20,
-  //   position: "absolute",
-  //   bottom: 0,
-  //   width: "100%",
-  //   display: "flex",
-  //   alignItems: "flex-end",
-  //   flexDirection: "row",
-  //   justifyContent: "center",
-  //   columnGap: 30,
-  // },
-  // active: {
-  //   width: 70,
-  //   backgroundColor: "#FF6C00",
-  //   color: "#fff",
-  //   display: "flex",
-  //   justifyContent: "center",
-  //   alignItems: "center",
-  //   borderRadius: 20,
-  // },
 });
 
 export default PostsScreen;

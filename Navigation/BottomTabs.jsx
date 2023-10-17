@@ -25,7 +25,7 @@ const BottomTabs = () => {
           let icon;
           const buttonStyles = {
             backgroundColor: focused ? "#FF6C00" : "transparent",
-            borderRadius: 0, // Убираем borderRadius для активных кнопок
+            borderRadius: 0,
             width: 70,
             display: "flex",
             justifyContent: "center",
@@ -70,15 +70,6 @@ const BottomTabs = () => {
           title: "Публікації",
           tabBarLabel: "center",
           tabBarVisible: false,
-          header: ({ navigation, route, options }) => {
-            const title = getHeaderTitle(options, route.name);
-            return (
-              <View>
-                <Header title={title} />
-                <LogOutButton />
-              </View>
-            );
-          },
         }}
       />
       <Tab.Screen
@@ -87,16 +78,6 @@ const BottomTabs = () => {
         options={{
           title: "Створити публікацію",
           tabBarStyle: { display: "none" },
-          header: ({ navigation, route, options }) => {
-            const title = getHeaderTitle(options, route.name);
-            console.log(route);
-            return (
-              <View>
-                <Header title={title} />
-                <ArrowBackButton onPress={navigation.goBack} />
-              </View>
-            );
-          },
         }}
       />
       <Tab.Screen
@@ -105,7 +86,7 @@ const BottomTabs = () => {
         options={{
           title: "Profile",
           tabBarVisible: false,
-          headerShown: false, // Убрать заголовок для этого экрана
+          // headerShown: false, // Убрать заголовок для этого экрана
         }}
       />
     </Tab.Navigator>

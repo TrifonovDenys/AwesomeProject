@@ -7,7 +7,10 @@ import {
   TextInput,
   TouchableWithoutFeedback,
   Keyboard,
+  Dimensions,
 } from "react-native";
+
+import MapView, { Marker } from "react-native-maps";
 import Camera from "../assets/svg/camera.svg";
 import Trash from "../assets/svg/trash.svg";
 import MapPin from "../assets/svg/map-pin.svg";
@@ -39,6 +42,26 @@ const CreatePostScreen = () => {
                 placeholderTextColor="#BDBDBD"
               />
             </View>
+            <View style={styles.container}>
+              <MapView
+                style={styles.mapStyle}
+                region={{
+                  latitude: 8.78825,
+                  longitude: -122.4324,
+                  latitudeDelta: 0.0922,
+                  longitudeDelta: 0.0421,
+                }}
+                mapType="standard"
+                minZoomLevel={15}
+                onMapReady={() => console.log("Map is ready")}
+                onRegionChange={() => console.log("Region change")}>
+                <Marker
+                  title="I am here"
+                  coordinate={{ latitude: 37.78825, longitude: -122.4324 }}
+                  description="Hello"
+                />
+              </MapView>
+            </View>
           </SafeAreaView>
           <ButtonSubmit>Опубліковати</ButtonSubmit>
         </View>
@@ -53,6 +76,16 @@ const CreatePostScreen = () => {
 };
 
 const styles = StyleSheet.create({
+  container: {
+    flex: 1,
+    backgroundColor: "#fff",
+    alignItems: "center",
+    justifyContent: "center",
+  },
+  mapStyle: {
+    width: Dimensions.get("window").width,
+    height: Dimensions.get("window").height,
+  },
   wrapper: {
     paddingTop: 32,
     paddingHorizontal: 16,
@@ -61,7 +94,7 @@ const styles = StyleSheet.create({
     flex: 1,
     backgroundColor: "#fff",
     justifyContent: "space-between",
-    paddingBottom: 24,
+    paddingBottom: 20,
   },
   addPhotoWrapper: {
     marginBottom: 32,
