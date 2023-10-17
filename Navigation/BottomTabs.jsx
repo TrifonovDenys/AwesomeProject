@@ -11,6 +11,7 @@ import Union from "../assets/svg/addU.svg";
 import User from "../assets/svg/user.svg";
 
 import LogOutButton from "../Components/LogOutButton";
+import ArrowBackButton from "../Components/ArrowBack";
 
 const Tab = createBottomTabNavigator();
 
@@ -88,7 +89,13 @@ const BottomTabs = () => {
           tabBarStyle: { display: "none" },
           header: ({ navigation, route, options }) => {
             const title = getHeaderTitle(options, route.name);
-            return <Header title={title} />;
+            console.log(route);
+            return (
+              <View>
+                <Header title={title} />
+                <ArrowBackButton onPress={navigation.goBack} />
+              </View>
+            );
           },
         }}
       />

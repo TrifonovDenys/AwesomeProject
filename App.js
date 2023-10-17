@@ -5,8 +5,6 @@ import { useFonts } from "expo-font";
 import { NavigationContainer } from "@react-navigation/native";
 import MainNav from "./Navigation/MainNav";
 
-import Arrow from "./assets/svg/arrow-left.svg"; // icon back
-
 export default function App() {
   const [fontsLoaded] = useFonts({
     "Roboto-Regular": require("./assets/fonts/Roboto-Regular.ttf"),
@@ -21,12 +19,12 @@ export default function App() {
       <MainNav />
       <StatusBar style="auto" />
     </NavigationContainer>
-
   );
 }
 
 const styles = StyleSheet.create({
-  // container: {
-  //   flex: 1,
-  // },
+  container: {
+    flex: 1,
+    position: "relative",
+  },
 });
