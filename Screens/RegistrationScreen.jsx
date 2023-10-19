@@ -76,8 +76,7 @@ const RegistrationScreen = () => {
         <KeyboardAvoidingView
           style={styles.container}
           behavior={Platform.OS === "ios" ? "padding" : "height"}
-          keyboardVerticalOffset={-82}
-        >
+          keyboardVerticalOffset={-82}>
           <SafeAreaView
             style={styles.scrollView}
             automaticallyAdjustKeyboardInsets={true}>
@@ -131,11 +130,9 @@ const RegistrationScreen = () => {
         </KeyboardAvoidingView>
       </TouchableWithoutFeedback>
       <View style={styles.buttonBlock}>
-        <ButtonSubmit onPress={handleRegistration}>
-        Увійти
-        </ButtonSubmit>
+        <ButtonSubmit onPress={handleRegistration}>Увійти</ButtonSubmit>
         <Text style={styles.loginText}>
-        Немає акаунту?{" "} 
+          Немає акаунту?{" "}
           <Text
             style={{ textDecorationLine: "underline" }}
             onPress={() => navigation.navigate("Login")}>

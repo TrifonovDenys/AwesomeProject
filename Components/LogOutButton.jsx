@@ -8,7 +8,6 @@ const LogOutButton = () => {
 
   const handleLogOut = () => {
     navigation.navigate("Login");
-    console.log("LogOut");
   };
 
   return (

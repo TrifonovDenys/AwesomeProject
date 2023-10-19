@@ -1,11 +1,30 @@
 import React from "react";
 import { TouchableOpacity, StyleSheet } from "react-native";
-import { useNavigation } from "@react-navigation/native";
 import Arrow from "../assets/svg/arrow-left.svg";
 
-const ArrowBackButton = () => {
+import { BackHandler } from "react-native";
+import { useNavigation } from "@react-navigation/native";
+
+const ArrowBackButton = ({ onPress }) => {
+  const navigation = useNavigation();
+
+  const handleBackPress = () => {
+    navigation.goBack();
+    return true; // Возвращаем true, чтобы предотвратить действие по умолчанию (например, выход из приложения)
+  };
+
+  React.useEffect(() => {
+    BackHandler.addEventListener("hardwareBackPress", handleBackPress);
+
+    return () => {
+      BackHandler.removeEventListener("hardwareBackPress", handleBackPress);
+    };
+  }, []);
+
   return (
-    <TouchableOpacity style={styles.head}>
+    <TouchableOpacity
+      onPress={onPress || (() => navigation.goBack())}
+      style={styles.head}>
       <Arrow style={styles.headIcon} />
     </TouchableOpacity>
   );
@@ -14,10 +33,10 @@ const ArrowBackButton = () => {
 const styles = StyleSheet.create({
   head: {
     position: "absolute",
-    top: -10,
+    bottom: 13,
   },
   headIcon: {
-    // marginRight: 16,
+    marginLeft: 16,
   },
 });
 

@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState, useEffect, useRef } from "react";
 import {
   View,
   Text,
@@ -8,24 +8,83 @@ import {
   TouchableWithoutFeedback,
   Keyboard,
   Dimensions,
+  TouchableOpacity,
 } from "react-native";
 
+import { Camera, CameraType } from "expo-camera";
+import * as MediaLibrary from "expo-media-library";
+
 import MapView, { Marker } from "react-native-maps";
-import Camera from "../assets/svg/camera.svg";
+import Camerai from "../assets/svg/camera.svg";
 import Trash from "../assets/svg/trash.svg";
 import MapPin from "../assets/svg/map-pin.svg";
 import ButtonSubmit from "../Components/Button";
+
 const CreatePostScreen = () => {
+  const [permission, requestPermission] = Camera.useCameraPermissions();
+
+  const [hasPermission, setHasPermission] = useState(null);
+  const [cameraRef, setCameraRef] = useState(null);
+  const [type, setType] = useState(CameraType.back);
+
+  useEffect(() => {
+    (async () => {
+      const { status } = await Camera.requestCameraPermissionsAsync();
+      await MediaLibrary.requestPermissionsAsync();
+
+      setHasPermission(status === "granted");
+    })();
+  }, []);
+
+  if (hasPermission === null) {
+    return <View />;
+  }
+  if (hasPermission === false) {
+    return <Text>No access to camera</Text>;
+  }
+
   return (
     <TouchableWithoutFeedback onPress={Keyboard.dismiss}>
       <View style={styles.wrapper}>
         <View>
           <View style={styles.addPhotoWrapper}>
-            <View style={styles.addPhoto}>
-              <View style={styles.iconAddPhoto}>
-                <Camera />
+            {/* <View style={styles.addPhoto}> */}
+            <Camera style={styles.camera} type={type} ref={setCameraRef}>
+              <View style={styles.photoView}>
+                <TouchableOpacity
+                  style={styles.flipContainer}
+                  onPress={() => {
+                    setType(
+                      type === Camera.Constants.Type.back
+                        ? Camera.Constants.Type.front
+                        : Camera.Constants.Type.back
+                    );
+                  }}>
+                  <Text
+                    style={{
+                      fontSize: 18,
+                      marginBottom: 10,
+                      color: "white",
+                    }}>
+                    {" "}
+                    Flip{" "}
+                  </Text>
+                </TouchableOpacity>
+                <TouchableOpacity
+                  style={styles.button}
+                  onPress={async () => {
+                    if (cameraRef) {
+                      const { uri } = await cameraRef.takePictureAsync();
+                      await MediaLibrary.createAssetAsync(uri);
+                    }
+                  }}>
+                  <View style={styles.takePhotoOut}>
+                    <View style={styles.takePhotoInner}></View>
+                  </View>
+                </TouchableOpacity>
               </View>
-            </View>
+            </Camera>
+            {/* </View> */}
             <Text style={styles.addPhotoText}>Завантажте фото</Text>
           </View>
           <SafeAreaView style={styles.form}>
@@ -42,7 +101,7 @@ const CreatePostScreen = () => {
                 placeholderTextColor="#BDBDBD"
               />
             </View>
-            <View style={styles.container}>
+            {/* <View style={styles.container}>
               <MapView
                 style={styles.mapStyle}
                 region={{
@@ -61,7 +120,7 @@ const CreatePostScreen = () => {
                   description="Hello"
                 />
               </MapView>
-            </View>
+            </View> */}
           </SafeAreaView>
           <ButtonSubmit>Опубліковати</ButtonSubmit>
         </View>
@@ -99,16 +158,21 @@ const styles = StyleSheet.create({
   addPhotoWrapper: {
     marginBottom: 32,
   },
-  addPhoto: {
-    display: "flex",
-    alignItems: "center",
+  camera: {
+    // display: "flex",
+    // alignItems: "center",
     justifyContent: "center",
     height: 240,
-    backgroundColor: "#F6F6F6",
+    // backgroundColor: "#F6F6F6",
     borderWidth: 1,
     borderColor: "#E8E8E8",
     borderRadius: 8,
     marginBottom: 8,
+  },
+  photoView: {
+    display: "flex",
+    backgroundColor: "transparent",
+    justifyContent: "flex-end",
   },
   iconAddPhoto: {
     width: 60,
