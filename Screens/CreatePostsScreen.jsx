@@ -48,43 +48,44 @@ const CreatePostScreen = () => {
       <View style={styles.wrapper}>
         <View>
           <View style={styles.addPhotoWrapper}>
-            {/* <View style={styles.addPhoto}> */}
-            <Camera style={styles.camera} type={type} ref={setCameraRef}>
-              <View style={styles.photoView}>
-                <TouchableOpacity
-                  style={styles.flipContainer}
-                  onPress={() => {
-                    setType(
-                      type === Camera.Constants.Type.back
-                        ? Camera.Constants.Type.front
-                        : Camera.Constants.Type.back
-                    );
-                  }}>
-                  <Text
-                    style={{
-                      fontSize: 18,
-                      marginBottom: 10,
-                      color: "white",
+            <View style={styles.addPhoto}>
+              <Camera style={styles.camera} type={type} ref={setCameraRef}>
+                <View style={styles.photoView}>
+                  <TouchableOpacity
+                    style={styles.flipContainer}
+                    onPress={() => {
+                      setType(
+                        type === Camera.Constants.Type.back
+                          ? Camera.Constants.Type.front
+                          : Camera.Constants.Type.back
+                      );
                     }}>
-                    {" "}
-                    Flip{" "}
-                  </Text>
-                </TouchableOpacity>
-                <TouchableOpacity
-                  style={styles.button}
-                  onPress={async () => {
-                    if (cameraRef) {
-                      const { uri } = await cameraRef.takePictureAsync();
-                      await MediaLibrary.createAssetAsync(uri);
-                    }
-                  }}>
-                  <View style={styles.takePhotoOut}>
-                    <View style={styles.takePhotoInner}></View>
-                  </View>
-                </TouchableOpacity>
-              </View>
-            </Camera>
-            {/* </View> */}
+                    <Text
+                      style={{
+                        fontSize: 18,
+                        marginBottom: 10,
+                        color: "white",
+                      }}>
+                      {" "}
+                      Flip{" "}
+                    </Text>
+                  </TouchableOpacity>
+                  <TouchableOpacity
+                    style={styles.button}
+                    onPress={async () => {
+                      if (cameraRef) {
+                        const { uri } = await cameraRef.takePictureAsync();
+                        const a = await MediaLibrary.createAssetAsync(uri);
+                        console.log(a.filename);
+                      }
+                    }}>
+                    <View style={styles.takePhotoOut}>
+                      <View style={styles.takePhotoInner}></View>
+                    </View>
+                  </TouchableOpacity>
+                </View>
+              </Camera>
+            </View>
             <Text style={styles.addPhotoText}>Завантажте фото</Text>
           </View>
           <SafeAreaView style={styles.form}>
@@ -133,13 +134,49 @@ const CreatePostScreen = () => {
     </TouchableWithoutFeedback>
   );
 };
-
+const { width, height } = Dimensions.get("window");
+const aspectRatio = width / height;
 const styles = StyleSheet.create({
-  container: {
+  // container: {
+  //   flex: 1,
+  //   backgroundColor: "#fff",
+  //   alignItems: "center",
+  //   justifyContent: "center",
+  // },
+  camera: {
     flex: 1,
-    backgroundColor: "#fff",
-    alignItems: "center",
+    borderRadius: 8,
+  },
+  flipContainer: {
+    flex: 0.1,
+    alignSelf: "flex-end",
+  },
+
+  button: { alignSelf: "center" },
+  photoView: {
+    flex: 1,
+    backgroundColor: "transparent",
+    justifyContent: "flex-end",
+    borderRadius: 8,
+  },
+  takePhotoOut: {
+    borderWidth: 2,
+    borderColor: "white",
+    height: 50,
+    width: 50,
+    display: "flex",
     justifyContent: "center",
+    alignItems: "center",
+    borderRadius: 50,
+  },
+
+  takePhotoInner: {
+    borderWidth: 2,
+    borderColor: "white",
+    height: 40,
+    width: 40,
+    backgroundColor: "white",
+    borderRadius: 50,
   },
   mapStyle: {
     width: Dimensions.get("window").width,
@@ -158,7 +195,7 @@ const styles = StyleSheet.create({
   addPhotoWrapper: {
     marginBottom: 32,
   },
-  camera: {
+  addPhoto: {
     // display: "flex",
     // alignItems: "center",
     justifyContent: "center",
